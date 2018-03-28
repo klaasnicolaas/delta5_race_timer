@@ -20,8 +20,4 @@ For initial setup and running races, follow these instructions: [/doc/User Guide
 
 ### Support
 Have questions? Comments? Join us at the Delta 5 Race Timer Facebook Group page and we'll try to help troubleshoot.
-<<<<<<< HEAD
 https://www.facebook.com/groups/Delta5RaceTimer/
-=======
-https://www.facebook.com/groups/Delta5RaceTimer/
->>>>>>> 449f9439c7f52b8a0a53c840a03b6d2087697e2e
