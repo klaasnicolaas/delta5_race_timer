@@ -329,6 +329,18 @@ class Delta5Interface(BaseHardwareInterface):
             self.set_filter_ratio(node.index, filter_ratio)
         return self.filter_ratio
 
+<<<<<<< HEAD
+=======
+    def intf_simulate_lap(self, node_index):
+        node = self.nodes[node_index]
+        node.current_rssi = 11
+        node.trigger_rssi = 22
+        node.peak_rssi_raw = 33
+        node.peak_rssi = 44
+        node.loop_time = 55
+        self.pass_record_callback(node, 100)
+
+>>>>>>> 449f9439c7f52b8a0a53c840a03b6d2087697e2e
 def get_hardware_interface():
     '''Returns the delta 5 interface object.'''
     return Delta5Interface()

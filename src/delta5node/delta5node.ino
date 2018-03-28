@@ -29,7 +29,11 @@
 // Node Setup -- Set the i2c address here
 // Node 1 = 8, Node 2 = 10, Node 3 = 12, Node 4 = 14
 // Node 5 = 16, Node 6 = 18, Node 7 = 20, Node 8 = 22
+<<<<<<< HEAD
 #define i2cSlaveAddress 18
+=======
+#define i2cSlaveAddress 8
+>>>>>>> 449f9439c7f52b8a0a53c840a03b6d2087697e2e
 
 const int slaveSelectPin = 10; // Setup data pins for rx5808 comms
 const int spiDataPin = 11;
@@ -99,6 +103,7 @@ uint8_t volatile ioBuffer[32]; // Data array for sending over i2c, up to 32 byte
 int ioBufferSize = 0;
 int ioBufferIndex = 0;
 
+<<<<<<< HEAD
 // Define vtx frequencies in mhz and their hex code for setting the rx5808 module
 int vtxFreqTable[] = {
   5865, 5845, 5825, 5805, 5785, 5765, 5745, 5725, // Band A
@@ -115,6 +120,8 @@ uint16_t vtxHexTable[] = {
   0x281D, 0x288F, 0x2902, 0x2914, 0x2987, 0x2999, 0x2A0C, 0x2A1E  // Band C / Raceband
 };
 
+=======
+>>>>>>> 449f9439c7f52b8a0a53c840a03b6d2087697e2e
 // Defines for fast ADC reads
 #define cbi(sfr, bit) (_SFR_BYTE(sfr) &= ~_BV(bit))
 #define sbi(sfr, bit) (_SFR_BYTE(sfr) |= _BV(bit))
@@ -186,10 +193,23 @@ void SERIAL_ENABLE_HIGH() {
 	delayMicroseconds(100);
 }
 
+<<<<<<< HEAD
+=======
+// Calculate rx5808 register hex value for given frequency in MHz
+uint16_t freqMhzToRegVal(uint16_t freqInMhz) {
+  uint16_t tf, N, A;
+  tf = (freqInMhz - 479) / 2;
+  N = tf / 32;
+  A = tf % 32;
+  return (N<<7) + A;
+}
+
+>>>>>>> 449f9439c7f52b8a0a53c840a03b6d2087697e2e
 // Set the frequency given on the rx5808 module
 void setRxModule(int frequency) {
 	uint8_t i; // Used in the for loops
 
+<<<<<<< HEAD
 	uint8_t index; // Find the index in the frequency lookup table
 	for (i = 0; i < sizeof(vtxFreqTable); i++) {
 		if (frequency == vtxFreqTable[i]) {
@@ -200,6 +220,10 @@ void setRxModule(int frequency) {
 
 	uint16_t vtxHex; // Get the hex value to send to the rx module
 	vtxHex = vtxHexTable[index];
+=======
+	// Get the hex value to send to the rx module
+	uint16_t vtxHex = freqMhzToRegVal(frequency);
+>>>>>>> 449f9439c7f52b8a0a53c840a03b6d2087697e2e
 
 	// bit bash out 25 bits of data / Order: A0-3, !R/W, D0-D19 / A0=0, A1=0, A2=0, A3=1, RW=0, D0-19=0
 	SERIAL_ENABLE_HIGH();
@@ -529,4 +553,8 @@ void i2cTransmit() {
 		ioBufferWriteChecksum();
 		Wire.write((byte *)&ioBuffer, ioBufferSize);
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 449f9439c7f52b8a0a53c840a03b6d2087697e2e
